@@ -1,7 +1,7 @@
 const pool = require('./DBPool');
 const { validate } = require('./functions');
-const tablename = 'novedad';
-const requiredfields = ['title', 'subtitle', 'body'];
+const tablename = 'service';
+const requiredfields = ['type', 'name', 'caption', 'description', 'image'];
 
 function findAll() {
     return new Promise(async (resolve, _reject) => {

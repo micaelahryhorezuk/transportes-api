@@ -6,6 +6,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var hbs = require('hbs');
 var { v4: genuuid} = require('uuid');
+const cors = require('cors');
 require('dotenv').config();
 
 // Public routes
@@ -13,8 +14,8 @@ const indexRouter = require('./routes/index');
 const contactRouter = require('./routes/contact');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
-const novedadRouter = require('./routes/novedad');
-const servicioRouter = require('./routes/servicio');
+const noveltyRouter = require('./routes/novelty');
+const serviceRouter = require('./routes/service');
 const staffRouter = require('./routes/staff');
 const userRouter = require('./routes/user');
 
@@ -32,6 +33,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(__dirname + '/views/partials');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,8 +45,8 @@ app.use('/', indexRouter);
 app.use('/contact', contactRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
-app.use('/novedad', novedadRouter);
-app.use('/servicio', servicioRouter);
+app.use('/novelty', noveltyRouter);
+app.use('/service', serviceRouter);
 app.use('/staff', staffRouter);
 app.use('/user', userRouter);
 
