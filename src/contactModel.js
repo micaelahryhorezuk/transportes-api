@@ -20,11 +20,9 @@ const config = {
 
 function sendEmail(body) {
     return new Promise(async (resolve, reject) => {
-        console.log(config)
         const transporter = nodemailer.createTransport(config);
         const isValid = validate([body], requiredfields);
         if (!isValid) return reject(`Error, revise los campos requeridos de ${tablename}: ${requiredfields.join(', ')}`);
-        console.log({body})
         return resolve(transporter.sendMail(body));
     });
 }
